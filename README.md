@@ -40,7 +40,7 @@ Things you may want to cover:
 |group_name|string|null: false|
 |menber.id|string||
 ### Association
-
+belongs_to :menber
 
 ## messageテーブル
 |Column|Type|Options|

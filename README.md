@@ -26,44 +26,42 @@ Things you may want to cover:
 ## usersテーブル
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false, foreign_key: true|
 |email|string|null: false, unique: true|
 |password|string|null: false|
-|user_name|string|null: false, index: true|
+|name|string|null: false, index: true|
 ### Association
 - has_many :groups,through: :members
 - has_many :messages
+- has_many :members
 
 ## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false|
-|group_name|string|null: false|
+|name|string|null: false|
 ### Association
 - has_many :users, through: :members
 - has_many :messages
+- has_many :members
 
 ## messagesテーブル
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false, foreign_key: true|
-|content|text|null: false, foreign_key: true|
+|content|text||
 |image|bytea||
 |create_at|date|null: false|
-|users.id|integer|null: false, foreign_key: true|（投稿者）
-|groups.id|intenger|null: false|
+|user_id|integer|null: false, foreign_key: true|（投稿者）
+|group_id|intenger|null: false, foreign_key: true|
 ### Association
-- belongs_to :users
-- belongs_to :groups
+- belongs_to :user
+- belongs_to :group
 
 ## membersテーブル(中間)
 |Column|Type|Options|
 |------|----|-------|
-|id|integer|null: false, foreign_key: true|
-|groups.id|integer|null: false, foreign_key: true|
-|users.id|integer|null: false, foreign_key: true|
+|group_id|integer|null: false, foreign_key: true|
+|user_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :groups
-- belongs_to :users
+- belongs_to :group
+- belongs_to :user
 
 

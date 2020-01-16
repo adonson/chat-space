@@ -23,7 +23,7 @@ Things you may want to cover:
 
 * ...
 
-## usersテーブル
+## userテーブル
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null: false, foreign_key: true|
@@ -31,16 +31,17 @@ Things you may want to cover:
 |password|string|null: false|
 |user_name|string||
 ### Association
-
+- has_many :group,through: :member
+- has_many :message
 
 ## groupテーブル
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null: false|
 |group_name|string|null: false|
-|menber.id|string||
 ### Association
-belongs_to :menber
+- has_many :user, through: :member
+- has_many :message
 
 ## messageテーブル
 |Column|Type|Options|
@@ -50,11 +51,12 @@ belongs_to :menber
 |image|bytea||
 |create_at|date||
 |user.id|integer|foreign_key: true|（投稿者）
+|group.id|intenger||
 ### Association
 - belongs_to :user
+- belongs_to :group
 
-
-## menberテーブル(中間)
+## memberテーブル(中間)
 |Column|Type|Options|
 |------|----|-------|
 |id|integer|null: false, foreign_key: true|

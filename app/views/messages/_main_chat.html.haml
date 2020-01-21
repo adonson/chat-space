@@ -1,0 +1,26 @@
+.chat-main
+  .chat-main__group-info
+    .chat-main__group-info__group-detail
+      .chat-main__group-info__group-detail__head
+        .chat-main__group-info__group-detail__head__title
+          タイトル
+        .chat-main__group-info__group-detail__head__member
+          member      
+      %input.edit-btn{value: "Edit", type: "button",onclick: "location.href='https://www.amazon.co.jp/'" }
+
+  .chat-main__message-list
+    .chat-main__message-list__head
+      .chat-main__message-list__head__user-name
+        masa
+      .chat-main__message-list__head__post-time
+        time
+    .chat-main__message-list__posted-message
+      おはよう 
+
+  .chat-main__message-info
+    .chat-main__message-info__from
+      %input.message-box{placeholder: "type a message",type:"text"}
+      %label.label
+        %input.select-img{type:"file",id:"selected-img",accept:"image/*"} 
+        = icon('fas', 'image')
+    %input.send-btn{type: "submit",value: "send", palceholder: "type a message"}

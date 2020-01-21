@@ -2,3 +2,8 @@
 @import "./messages";
 @import "font-awesome-sprockets";
 @import "./font-awesome";
+@import "modules/user";
+
+// colors.scssとflash.scssをインポート
+@import "config/colors";
+@import "modules/flash";

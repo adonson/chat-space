@@ -4,12 +4,15 @@
       .side-bar__user-name__top-items__name
         = current_user.name
       .side-bar__user-name__top-items__icons
-        =link_to"https://www.amazon.co.jp/",class:"icon__btn" do
-          =icon('far','far fa-edit')
+        = link_to new_group_path() do
+          = icon('far','far fa-edit', class: 'icon__btn')
         = link_to edit_user_path(current_user) do
           = icon('fas', 'cog', class: 'icon__btn')
+  
   .side-bar__group-list
-    .side-bar__group-list__group-name
-      グループ名
-    .side-bar__group-list__last-message
-      新しいメッセージ
+    - current_user.groups.each do |group|
+      = link_to group_messages_path(group) do
+        .side-bar__group-list__group-name
+          = group.name
+        .side-bar__group-list__last-message
+          メッセージはまだありません

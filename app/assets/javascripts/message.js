@@ -58,10 +58,10 @@ $('#new_message').on('submit', function(e){
     $('form')[0].reset();
 })
   .fail(function() {
-  alert("メッセージ送信に失敗しました");
+    alert("メッセージ送信に失敗しました");
   });  
   always(function() {
-  $('input[type ="submit"]').prop( 'disabled', false )
+    $('input[type ="submit"]').prop( 'disabled', false )
   })
 })
 });

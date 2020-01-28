@@ -56,16 +56,12 @@ $('#new_message').on('submit', function(e){
     $('.messages').append(html);    
     $('.box').animate({'height' : '200px'});  
     $('form')[0].reset();
-    fail(function() {
-      alert("メッセージ送信に失敗しました");
-  });
-  })
-
-  
-
-.always(function() {
-  $('input[type ="submit"]').prop( 'disabled', false )
 })
-
+  .fail(function() {
+  alert("メッセージ送信に失敗しました");
+  });  
+  always(function() {
+  $('input[type ="submit"]').prop( 'disabled', false )
+  })
 })
 });

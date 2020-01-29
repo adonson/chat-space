@@ -5,8 +5,8 @@
         .chat-main__group-info__group-detail__head__title
           = @group.name
         .chat-main__group-info__group-detail__head__member
+          Member:
           - @group.users.each do |user|
-            Member:
             = user.name
       - @group
       -# %input.edit-btn{value: "Edit", type: "button",onclick: "location.href='http://localhost:3000/groups//edit'" }

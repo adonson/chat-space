@@ -161,6 +161,9 @@
       font-size:14px;
       margin-left:40px;
       margin-bottom:46px;
+      &__content{
+        text-align:left;
+      }
     }
   }
   // &__message-info{

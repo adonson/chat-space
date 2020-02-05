@@ -44,11 +44,11 @@ namespace :deploy do
   before :starting, 'deploy:upload'
   after :finishing, 'deploy:cleanup'
 end
-namespace :deploy do
-  task :restart do
-    invoke 'unicorn:restart'
-  end
-end
+# namespace :deploy do
+#   task :restart do
+#     invoke 'unicorn:restart'
+#   end
+# end
 
 # secrets.yml用のシンボリックリンクを追加
 set :linked_files, %w{ config/secrets.yml }

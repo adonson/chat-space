@@ -1,26 +1,24 @@
 $(function () {
-  last_message_id = $('.message:last').data("message-id");
-  console.log(last_message_id);
   function buildHTML(message) {
     var imageUrl = message.image ? message.image : '';
-    var html = `<div class="chat-main__message-list__head" data-message-id="${message.id}">
-                <div class="chat-main__message-list__head__user-name">
-                  ${message.user_name}
+    var html = `<div class="chat-main__message-list__head" data-id="${message.id}">
+    <div class="chat-main__message-list__head__user-name">
+    ${message.user_name}
+    </div>
+    <div class="chat-main__message-list__head__post-time">
+    ${message.created_at}
                 </div>
-                <div class="chat-main__message-list__head__post-time">
-                  ${message.created_at}
                 </div>
-              </div>
               <div class="chat-main__message-list__posted-message">
-                ${message.content}
+              ${message.content}
               </div>
               <div class="posted-message__image">
-                <img class="" src="${imageUrl}">
+              <img class="" src="${imageUrl}">
               </div>
-                </div>`
-    return html
-  }
-
+              </div>`
+              return html
+            }
+            
   $('#new_message').on('submit', function (e) {
     e.preventDefault();
     var url = $(this).attr('action');
@@ -43,12 +41,15 @@ $(function () {
     .fail(function () {
       alert("メッセージ送信に失敗しました");
       $('.form__submit').prop('disabled', false);
+      
     });
   })
-
+  
   var reloadMessages = function() {
-    $.ajax({
-      //ルーティングで設定した通りのURLを指定
+    if (document.location.href.match(/\/groups\/\d+\/messages/)) {
+      last_message_id = $('.chat-main__message-list__head:last').data("id");
+      $.ajax({
+        //ルーティングで設定した通りのURLを指定
       url: "api/messages",
       //ルーティングで設定した通りhttpメソッドをgetに指定
       type: 'get',
@@ -57,6 +58,8 @@ $(function () {
       data: {id: last_message_id}
     })
     .done(function(messages) {
+      console.table(messages)
+      if (messages.length !== 0) {
       //追加するHTMLの入れ物を作る
       var insertHTML = '';
       //配列messagesの中身一つ一つを取り出し、HTMLに変換したものを入れ物に足し合わせる
@@ -66,13 +69,12 @@ $(function () {
       //メッセージが入ったHTMLに、入れ物ごと追加
       $('.chat-main__message-list').append(insertHTML);
       $('.chat-main__message-list').animate({ scrollTop: $('.chat-main__message-list')[0].scrollHeight });
-    })
+    }})
     .fail(function() {
       alert('error');
     });
   };
-  if (document.location.href.match(/\/groups\/\d+\/messages/)) {
-    setInterval(reloadMessages, 5000);
   }
+  setInterval(reloadMessages, 5000);
 });
 

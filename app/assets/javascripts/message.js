@@ -1,4 +1,6 @@
 $(function () {
+  last_message_id = $('.message:last').data("message-id");
+  console.log(last_message_id);
   function buildHTML(message) {
     var imageUrl = message.image ? message.image : '';
     var html = `<div class="chat-main__message-list__head" data-message-id="${message.id}">
@@ -35,14 +37,13 @@ $(function () {
       var html = buildHTML(data);
       $('.chat-main__message-list').append(html);
       $('form')[0].reset();
-      $('.chat-main__message-list').animate({ scrollTop: $('.chat-main__message-list')[0].scrollHeight });
       $('.form__submit').prop('disabled', false);
+      $('.chat-main__message-list').animate({ scrollTop: $('.chat-main__message-list')[0].scrollHeight });
     })
     .fail(function () {
       alert("メッセージ送信に失敗しました");
       $('.form__submit').prop('disabled', false);
     });
-
   })
 
   var reloadMessages = function() {

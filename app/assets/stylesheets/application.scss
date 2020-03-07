@@ -3,8 +3,8 @@
 @import "font-awesome-sprockets";
 @import "./font-awesome";
 @import "modules/user";
-@import "reset";
 // colors.scssとflash.scssをインポート
+@import "./color";
 @import "config/colors";
 @import "modules/flash";
 
